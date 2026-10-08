@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Ali Al-Nadawi | Android Developer</title>
+
+    <meta name="description"
+          content="Ali Al-Nadawi — Android Developer and creator of Captain Tools.">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #08111f;
+            --bg-soft: #0d1929;
+            --card: #101f31;
+            --border: #1d3045;
+            --text: #f2f6fa;
+            --muted: #91a0b2;
+            --accent: #62d39b;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background:
+                radial-gradient(
+                    circle at top right,
+                    rgba(55, 145, 105, 0.12),
+                    transparent 35%
+                ),
+                var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            transition: direction 0.2s;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            width: min(1050px, 92%);
+            margin: auto;
+        }
+
+        /* Navigation */
+
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            backdrop-filter: blur(14px);
+            background: rgba(8, 17, 31, 0.82);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-inner {
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 21px;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .nav-links a:hover {
+            color: var(--text);
+        }
+
+        /* Language button */
+
+        .language-btn {
+            cursor: pointer;
+            border: 1px solid var(--border);
+            background: var(--card);
+            color: var(--text);
+            padding: 7px 12px;
+            border-radius: 7px;
+            font-size: 12px;
+            transition: 0.2s;
+        }
+
+        .language-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* Hero */
+
+        .hero {
+            min-height: 78vh;
+            display: flex;
+            align-items: center;
+            padding: 80px 0;
+        }
+
+        .hero-content {
+            max-width: 760px;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 7px 13px;
+            border: 1px solid rgba(98, 211, 155, 0.25);
+            background: rgba(98, 211, 155, 0.07);
+            color: var(--accent);
+            border-radius: 999px;
+            font-size: 13px;
+            margin-bottom: 22px;
+        }
+
+        h1 {
+            font-size: clamp(42px, 7vw, 76px);
+            line-height: 1.05;
+            letter-spacing: -2px;
+            margin-bottom: 22px;
+        }
+
+        h1 span {
+            color: var(--accent);
+        }
+
+        .hero p {
+            max-width: 650px;
+            color: var(--muted);
+            font-size: 18px;
+            margin-bottom: 32px;
+        }
+
+        .buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 12px 20px;
+            border-radius: 9px;
+            border: 1px solid var(--border);
+            background: var(--card);
+            transition: 0.2s;
+            font-size: 14px;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent);
+        }
+
+        .button.primary {
+            background: var(--accent);
+            color: #06120c;
+            border-color: var(--accent);
+            font-weight: 700;
+        }
+
+        /* Sections */
+
+        section {
+            padding: 85px 0;
+        }
+
+        .section-title {
+            font-size: 30px;
+            margin-bottom: 12px;
+        }
+
+        .section-description {
+            color: var(--muted);
+            max-width: 650px;
+            margin-bottom: 35px;
+        }
+
+        /* About */
+
+        .about {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 22px;
+        }
+
+        .card {
+            background: linear-gradient(145deg, var(--card), var(--bg-soft));
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            padding: 26px;
+        }
+
+        .card h3 {
+            margin-bottom: 10px;
+            font-size: 19px;
+        }
+
+        .card p {
+            color: var(--muted);
+            font-size: 15px;
+        }
+
+        /* Project */
+
+        .project-label {
+            color: var(--accent);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .project h3 {
+            font-size: 28px;
+            margin-bottom: 12px;
+        }
+
+        .project p {
+            max-width: 720px;
+            margin-bottom: 22px;
+        }
+
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+
+        .feature {
+            padding: 7px 11px;
+            border-radius: 7px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid var(--border);
+            color: #bdc8d5;
+            font-size: 12px;
+        }
+
+        /* Skills */
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill {
+            padding: 9px 14px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: #c6d1dd;
+            font-size: 14px;
+        }
+
+        /* Footer */
+
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 30px 0;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        /* Arabic */
+
+        body.rtl {
+            direction: rtl;
+            font-family: Arial, "Tahoma", sans-serif;
+        }
+
+        body.rtl h1 {
+            letter-spacing: 0;
+        }
+
+        body.rtl .project-label {
+            letter-spacing: 0;
+        }
+
+        body.rtl .nav-links {
+            gap: 24px;
+        }
+
+        /* Mobile */
+
+        @media (max-width: 700px) {
+
+            .nav-links {
+                display: none;
+            }
+
+            .nav-right {
+                gap: 0;
+            }
+
+            .hero {
+                min-height: 70vh;
+                padding: 60px 0;
+            }
+
+            h1 {
+                letter-spacing: -1px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .about {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 65px 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<nav>
+    <div class="container nav-inner">
+
+        <a href="#" class="logo">
+            Ali<span>.</span>
+        </a>
+
+        <div class="nav-right">
+
+            <div class="nav-links">
+                <a href="#about" data-en="About" data-ar="عني">About</a>
+                <a href="#projects" data-en="Projects" data-ar="المشاريع">Projects</a>
+                <a href="#skills" data-en="Skills" data-ar="المهارات">Skills</a>
+                <a href="#contact" data-en="Contact" data-ar="تواصل معي">Contact</a>
+            </div>
+
+            <button
+                class="language-btn"
+                id="languageBtn"
+                onclick="toggleLanguage()">
+                AR
+            </button>
+
+        </div>
+
+    </div>
+</nav>
+
+
+<main>
+
+    <!-- Hero -->
+
+    <section class="hero">
+        <div class="container">
+
+            <div class="hero-content">
+
+                <div
+                    class="tag"
+                    data-en="Android Developer"
+                    data-ar="مطور أندرويد">
+                    Android Developer
+                </div>
+
+                <h1>
+                    <span data-en="Hi, I'm" data-ar="مرحباً، أنا">
+                        Hi, I'm
+                    </span>
+                    <br>
+                    Ali Al-Nadawi<span>.</span>
+                </h1>
+
+                <p
+                    data-en="I build Android applications and developer tools, with a focus on practical software, reverse engineering, and offline-first experiences."
+                    data-ar="أعمل على تطوير تطبيقات أندرويد وأدوات للمطورين، مع التركيز على البرمجيات العملية، والهندسة العكسية، والتجارب التي تعمل دون الحاجة إلى الإنترنت.">
+                    I build Android applications and developer tools,
+                    with a focus on practical software, reverse engineering,
+                    and offline-first experiences.
+                </p>
+
+                <div class="buttons">
+
+                    <a
+                        class="button primary"
+                        href="#projects"
+                        data-en="View Projects"
+                        data-ar="مشاهدة المشاريع">
+                        View Projects
+                    </a>
+
+                    <a
+                        class="button"
+                        href="https://github.com/AliAlNadawi"
+                        target="_blank">
+                        GitHub
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- About -->
+
+    <section id="about">
+
+        <div class="container">
+
+            <h2
+                class="section-title"
+                data-en="About Me"
+                data-ar="عني">
+                About Me
+            </h2>
+
+            <p
+                class="section-description"
+                data-en="I'm an Android developer interested in building useful software and exploring how Android applications work internally."
+                data-ar="أنا مطور أندرويد مهتم ببناء البرمجيات المفيدة واستكشاف كيفية عمل تطبيقات أندرويد من الداخل.">
+                I'm an Android developer interested in building useful
+                software and exploring how Android applications work internally.
+            </p>
+
+            <div class="about">
+
+                <div class="card">
+
+                    <h3
+                        data-en="Android Development"
+                        data-ar="تطوير أندرويد">
+                        Android Development
+                    </h3>
+
+                    <p
+                        data-en="Building Android applications with Kotlin, Jetpack Compose and native components when they are useful for the project."
+                        data-ar="تطوير تطبيقات أندرويد باستخدام Kotlin وJetpack Compose والمكونات الأصلية عند الحاجة إليها في المشروع.">
+                        Building Android applications with Kotlin,
+                        Jetpack Compose and native components when they
+                        are useful for the project.
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <h3
+                        data-en="Developer Tools"
+                        data-ar="أدوات المطورين">
+                        Developer Tools
+                    </h3>
+
+                    <p
+                        data-en="Interested in APK, DEX, Smali, XML and application analysis tools designed for practical offline workflows."
+                        data-ar="مهتم بأدوات APK وDEX وSmali وXML وتحليل التطبيقات، مع التركيز على الاستخدام العملي والعمل دون اتصال بالإنترنت.">
+                        Interested in APK, DEX, Smali, XML and application
+                        analysis tools designed for practical offline workflows.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Projects -->
+
+    <section id="projects">
+
+        <div class="container">
+
+            <h2
+                class="section-title"
+                data-en="Featured Project"
+                data-ar="المشروع الرئيسي">
+                Featured Project
+            </h2>
+
+            <p
+                class="section-description"
+                data-en="A look at one of my main projects."
+                data-ar="نظرة على أحد مشاريعي الرئيسية.">
+                A look at one of my main projects.
+            </p>
+
+
+            <div class="card project">
+
+                <div
+                    class="project-label"
+                    data-en="Android Developer Tool"
+                    data-ar="أداة للمطورين على أندرويد">
+                    Android Developer Tool
+                </div>
+
+                <h3>
+                    Captain Tools
+                </h3>
+
+                <p
+                    data-en="An Android toolkit designed for working with APKs, DEX, Smali, resources and application analysis. The project focuses on providing practical tools in an offline environment."
+                    data-ar="مجموعة أدوات لأندرويد مصممة للعمل مع APK وDEX وSmali والموارد وتحليل التطبيقات، مع التركيز على توفير أدوات عملية تعمل في بيئة دون اتصال بالإنترنت.">
+                    An Android toolkit designed for working with APKs,
+                    DEX, Smali, resources and application analysis.
+                    The project focuses on providing practical tools
+                    in an offline environment.
+                </p>
+
+                <div class="features">
+
+                    <span class="feature">APK Tools</span>
+                    <span class="feature">DEX</span>
+                    <span class="feature">Smali</span>
+                    <span class="feature">XML</span>
+                    <span class="feature">Resource Analysis</span>
+                    <span class="feature">Offline</span>
+                    <span class="feature">Android</span>
+
+                </div>
+
+                <a
+                    class="button primary"
+                    href="https://github.com/AliAlNadawi"
+                    target="_blank"
+                    data-en="View on GitHub"
+                    data-ar="عرض على GitHub">
+                    View on GitHub
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Skills -->
+
+    <section id="skills">
+
+        <div class="container">
+
+            <h2
+                class="section-title"
+                data-en="Technologies & Interests"
+                data-ar="التقنيات والاهتمامات">
+                Technologies & Interests
+            </h2>
+
+            <p
+                class="section-description"
+                data-en="Technologies and areas I work with or explore."
+                data-ar="التقنيات والمجالات التي أعمل بها أو أستكشفها.">
+                Technologies and areas I work with or explore.
+            </p>
+
+            <div class="skills">
+
+                <span class="skill">Kotlin</span>
+                <span class="skill">Jetpack Compose</span>
+                <span class="skill">Android</span>
+                <span class="skill">C++</span>
+                <span class="skill">JNI</span>
+                <span class="skill">APK Analysis</span>
+                <span class="skill">DEX</span>
+                <span class="skill">Smali</span>
+                <span class="skill">XML</span>
+                <span class="skill">Git</span>
+                <span class="skill">GitHub</span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Contact -->
+
+    <section id="contact">
+
+        <div class="container">
+
+            <h2
+                class="section-title"
+                data-en="Let's Connect"
+                data-ar="تواصل معي">
+                Let's Connect
+            </h2>
+
+            <p
+                class="section-description"
+                data-en="You can find my projects and development work on GitHub."
+                data-ar="يمكنك العثور على مشاريعي وأعمالي البرمجية على GitHub.">
+                You can find my projects and development work on GitHub.
+            </p>
+
+            <div class="buttons">
+
+                <a
+                    class="button primary"
+                    href="https://github.com/AliAlNadawi"
+                    target="_blank">
+                    GitHub
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    <div class="container footer-inner">
+
+        <div>
+            © 2026 Ali Al-Nadawi
+        </div>
+
+        <div class="footer-links">
+
+            <a
+                href="https://github.com/AliAlNadawi"
+                target="_blank">
+                GitHub
+            </a>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<script>
+
+    let currentLanguage = localStorage.getItem("language") || "en";
+
+    function setLanguage(language) {
+
+        currentLanguage = language;
+
+        document.documentElement.lang = language;
+
+        document.body.classList.toggle(
+            "rtl",
+            language === "ar"
+        );
+
+        document.querySelectorAll("[data-en]").forEach(element => {
+
+            element.textContent =
+                element.getAttribute(`data-${language}`);
+
+        });
+
+        document.getElementById("languageBtn").textContent =
+            language === "en" ? "AR" : "EN";
+
+        document.title =
+            language === "en"
+                ? "Ali Al-Nadawi | Android Developer"
+                : "علي النداوي | مطور أندرويد";
+
+        localStorage.setItem("language", language);
+    }
+
+
+    function toggleLanguage() {
+
+        setLanguage(
+            currentLanguage === "en"
+                ? "ar"
+                : "en"
+        );
+
+    }
+
+
+    setLanguage(currentLanguage);
+
+</script>
+
+</body>
+</html>
