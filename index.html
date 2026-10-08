@@ -41,7 +41,7 @@
                 var(--bg);
             color: var(--text);
             line-height: 1.6;
-            transition: direction 0.2s;
+            transition: 0.2s;
         }
 
         a {
@@ -98,7 +98,7 @@
             color: var(--text);
         }
 
-        /* Language button */
+        /* Language */
 
         .language-btn {
             cursor: pointer;
@@ -230,29 +230,54 @@
 
         /* Project */
 
+        .project {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 20px;
+            margin-bottom: 12px;
+        }
+
         .project-label {
             color: var(--accent);
             font-size: 12px;
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
+        }
+
+        .version {
+            flex-shrink: 0;
+            padding: 6px 10px;
+            border-radius: 7px;
+            background: rgba(98, 211, 155, 0.08);
+            border: 1px solid rgba(98, 211, 155, 0.2);
+            color: var(--accent);
+            font-size: 12px;
+            font-weight: 600;
         }
 
         .project h3 {
-            font-size: 28px;
+            font-size: 30px;
             margin-bottom: 12px;
         }
 
         .project p {
-            max-width: 720px;
+            max-width: 760px;
             margin-bottom: 22px;
+            color: var(--muted);
         }
 
         .features {
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
-            margin-bottom: 24px;
+            margin-bottom: 25px;
         }
 
         .feature {
@@ -297,11 +322,20 @@
             flex-wrap: wrap;
         }
 
+        .footer-links {
+            display: flex;
+            gap: 18px;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
         /* Arabic */
 
         body.rtl {
             direction: rtl;
-            font-family: Arial, "Tahoma", sans-serif;
+            font-family: Arial, Tahoma, sans-serif;
         }
 
         body.rtl h1 {
@@ -310,10 +344,6 @@
 
         body.rtl .project-label {
             letter-spacing: 0;
-        }
-
-        body.rtl .nav-links {
-            gap: 24px;
         }
 
         /* Mobile */
@@ -343,6 +373,11 @@
 
             .about {
                 grid-template-columns: 1fr;
+            }
+
+            .project-header {
+                flex-direction: column;
+                gap: 8px;
             }
 
             section {
@@ -388,6 +423,7 @@
     <!-- Hero -->
 
     <section class="hero">
+
         <div class="container">
 
             <div class="hero-content">
@@ -437,6 +473,7 @@
             </div>
 
         </div>
+
     </section>
 
 
@@ -529,16 +566,29 @@
 
             <div class="card project">
 
-                <div
-                    class="project-label"
-                    data-en="Android Developer Tool"
-                    data-ar="أداة للمطورين على أندرويد">
-                    Android Developer Tool
+                <div class="project-header">
+
+                    <div>
+
+                        <div
+                            class="project-label"
+                            data-en="Android Developer Tool"
+                            data-ar="أداة للمطورين على أندرويد">
+                            Android Developer Tool
+                        </div>
+
+                        <h3>
+                            Captain Tools
+                        </h3>
+
+                    </div>
+
+                    <div class="version">
+                        v2.3
+                    </div>
+
                 </div>
 
-                <h3>
-                    Captain Tools
-                </h3>
 
                 <p
                     data-en="An Android toolkit designed for working with APKs, DEX, Smali, resources and application analysis. The project focuses on providing practical tools in an offline environment."
@@ -548,6 +598,7 @@
                     The project focuses on providing practical tools
                     in an offline environment.
                 </p>
+
 
                 <div class="features">
 
@@ -561,14 +612,30 @@
 
                 </div>
 
-                <a
-                    class="button primary"
-                    href="https://github.com/AliAlNadawi"
-                    target="_blank"
-                    data-en="View on GitHub"
-                    data-ar="عرض على GitHub">
-                    View on GitHub
-                </a>
+
+                <div class="buttons">
+
+                    <a
+                        class="button primary"
+                        href="https://github.com/AliAlNadawi/CaptainTools/releases/tag/v2.3"
+                        target="_blank"
+                        rel="noopener"
+                        data-en="Download APK"
+                        data-ar="تحميل APK">
+                        Download APK
+                    </a>
+
+                    <a
+                        class="button"
+                        href="https://github.com/AliAlNadawi/CaptainTools"
+                        target="_blank"
+                        rel="noopener"
+                        data-en="GitHub Repository"
+                        data-ar="مستودع GitHub">
+                        GitHub Repository
+                    </a>
+
+                </div>
 
             </div>
 
@@ -643,7 +710,8 @@
                 <a
                     class="button primary"
                     href="https://github.com/AliAlNadawi"
-                    target="_blank">
+                    target="_blank"
+                    rel="noopener">
                     GitHub
                 </a>
 
@@ -668,7 +736,8 @@
 
             <a
                 href="https://github.com/AliAlNadawi"
-                target="_blank">
+                target="_blank"
+                rel="noopener">
                 GitHub
             </a>
 
@@ -681,7 +750,9 @@
 
 <script>
 
-    let currentLanguage = localStorage.getItem("language") || "en";
+    let currentLanguage =
+        localStorage.getItem("language") || "en";
+
 
     function setLanguage(language) {
 
@@ -694,6 +765,7 @@
             language === "ar"
         );
 
+
         document.querySelectorAll("[data-en]").forEach(element => {
 
             element.textContent =
@@ -701,15 +773,21 @@
 
         });
 
+
         document.getElementById("languageBtn").textContent =
             language === "en" ? "AR" : "EN";
+
 
         document.title =
             language === "en"
                 ? "Ali Al-Nadawi | Android Developer"
                 : "علي النداوي | مطور أندرويد";
 
-        localStorage.setItem("language", language);
+
+        localStorage.setItem(
+            "language",
+            language
+        );
     }
 
 
